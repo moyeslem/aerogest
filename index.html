@@ -252,7 +252,7 @@ footer{max-width:1100px;margin:0 auto;padding:16px 32px 32px;display:flex;align-
         <div class="field"><label for="f-dep">Départ</label><input type="text" id="f-dep" placeholder="Nouakchott"></div>
         <div class="field"><label for="f-dest">Destination</label><input type="text" id="f-dest" placeholder="Dakar"></div>
         <div class="field"><label for="f-seats">Places</label><input type="number" id="f-seats" placeholder="80" min="1"></div>
-        <div class="field"><label for="f-price">Prix (€)</label><input type="number" id="f-price" placeholder="95.00" step="0.01" min="0.01"></div>
+        <div class="field"><label for="f-price">Prix (mru)</label><input type="number" id="f-price" placeholder="9500.00" step="0.01" min="0.01"></div>
       </div>
       <div class="form-actions">
         <button class="btn btn-ghost" id="btn-cancel-form">Annuler</button>
@@ -349,14 +349,14 @@ footer{max-width:1100px;margin:0 auto;padding:16px 32px 32px;display:flex;align-
 (function(){
 'use strict';
 let vols=[
-  {numero:204,depart:'Nouakchott',destination:'Dakar',places:4,prix:95.00,max:4},
-  {numero:318,depart:'Casablanca',destination:'Paris',places:0,prix:310.50,max:150},
-  {numero:552,depart:'Nouakchott',destination:'Casablanca',places:27,prix:140.00,max:27},
+  {numero:204,depart:'Nouakchott',destination:'Dakar',places:4,prix:9500.00,max:4},
+  {numero:318,depart:'Casablanca',destination:'Paris',places:0,prix:31000.50,max:150},
+  {numero:552,depart:'Nouakchott',destination:'Casablanca',places:27,prix:14000.00,max:27},
 ];
 let passagers=[];
 let searchTerm='';
 const $=id=>document.getElementById(id);
-const money=n=>Number(n).toFixed(2)+' €';
+const money=n=>Number(n).toFixed(2)+' mru';
 const findVol=n=>vols.find(v=>v.numero===n)||null;
 const pad=(n,w)=>String(n).padStart(w,'0');
 
@@ -407,7 +407,7 @@ function renderVols(){
       <td><div class="route">${v.depart}</div></td>
       <td><div class="route"><span class="route-arrow">→</span>${v.destination}</div></td>
       <td><div class="seats-wrap"><span class="seats-count">${v.places} place${v.places!==1?'s':''}</span><div class="seats-bar"><div class="seats-fill ${cls}" style="width:${cls==='none'?100:pct}%"></div></div></div></td>
-      <td><div class="price-cell"><span class="currency">€ </span>${Number(v.prix).toFixed(2)}</div></td>
+      <td><div class="price-cell"><span class="currency">mru </span>${Number(v.prix).toFixed(2)}</div></td>
       <td><span class="badge ${v.places>0?'badge-ok':'badge-full'}">${v.places>0?'Disponible':'Complet'}</span></td>
     </tr>`;
   }).join('');
@@ -579,7 +579,7 @@ renderVols();renderSelect();renderPassagers();
           <input type="number" id="f-places" placeholder="ex. 80">
         </div>
         <div class="field">
-          <label>Prix (€)</label>
+          <label>Prix (mru)</label>
           <input type="number" id="f-prix" placeholder="ex. 120.00" step="0.01">
         </div>
         <div class="submit-row">
@@ -640,9 +640,9 @@ renderVols();renderSelect();renderPassagers();
 (function(){
   // ---------- State ----------
   let vols = [
-    { numero: 204, depart: "Nouakchott", destination: "Dakar", places: 4, prix: 95.00 },
-    { numero: 318, depart: "Casablanca", destination: "Paris", places: 0, prix: 310.50 },
-    { numero: 552, depart: "Nouakchott", destination: "Casablanca", places: 27, prix: 140.00 },
+    { numero: 204, depart: "Nouakchott", destination: "Dakar", places: 4, prix: 9500.00 },
+    { numero: 318, depart: "Casablanca", destination: "Paris", places: 0, prix: 31000.50 },
+    { numero: 552, depart: "Nouakchott", destination: "Casablanca", places: 27, prix: 14000.00 },
   ];
   let passagers = [];
   let searchTerm = "";
@@ -663,7 +663,7 @@ renderVols();renderSelect();renderPassagers();
     ).join('');
   }
 
-  function money(n){ return Number(n).toFixed(2) + ' €'; }
+  function money(n){ return Number(n).toFixed(2) + ' mru'; }
 
   function findVol(numero){ return vols.find(v => v.numero === numero); }
 
